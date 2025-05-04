@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindScope | Mental Disorder Prediction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to right, #c2e9fb, #a1c4fd);
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #ffffffcc;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .symptom-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 30px 0;
+        }
+        label {
+            background: #f0f8ff;
+            padding: 10px 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.3s;
+        }
+        label:hover {
+            background: #d4eefd;
+        }
+        input[type="checkbox"] {
+            transform: scale(1.2);
+        }
+        button {
+            display: block;
+            margin: 0 auto;
+            background: #4fa7ff;
+            color: white;
+            padding: 10px 25px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #368be0;
+        }
+        .result {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.3em;
+            font-weight: 600;
+            background: #f7f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-brain"></i> MindScope</h1>
+        <p style="text-align:center">Select the symptoms you observe to help us predict the possible mental health condition.</p>
+        <form action="/predict" method="post">
+            <div class="symptom-list">
+                {% for symptom in symptoms %}
+                <label>
+                    <input type="checkbox" name="symptoms" value="{{ symptom }}"> {{ symptom }}
+                </label>
+                {% endfor %}
+            </div>
+            <button type="submit"><i class="fas fa-search"></i> Predict</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            <i class="fas fa-stethoscope"></i> Predicted Disorder: <strong>{{ prediction }}</strong>
+        </div>
+        {% endif %}
+
+        <div class="footer">
+            <p>Developed with care to support mental wellness.</p>
+        </div>
+    </div>
+</body>
+</html>
