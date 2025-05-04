@@ -42,3 +42,4 @@ if __name__ == '__main__':
 # To run the Flask app, save this code in a file named `flask_app.py` and run it using the command:
 # python flask_app.py
 # Then, open your web browser and go to `http://
+print("Thank you for using the disorder prediction app!")
