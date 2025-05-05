@@ -6,11 +6,15 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="container">
-    <h1>🧠 MindScope Assistant</h1>
-    <p>Describe what you're feeling, and I’ll try to help you understand it better.</p>
+  <div class="container chat">
+    <h2>💬 Chat with MindScope</h2>
+    <div class="chat-box">
+      {% for msg in history %}
+        <div class="{{ msg.sender }}">{{ msg.message|safe }}</div>
+      {% endfor %}
+    </div>
     <form action="{{ url_for('chat') }}" method="POST">
-      <textarea name="user_input" placeholder="How have you been feeling lately?" required></textarea>
+      <input name="user_input" type="text" placeholder="Type your message..." required>
       <button type="submit">Send</button>
     </form>
   </div>
