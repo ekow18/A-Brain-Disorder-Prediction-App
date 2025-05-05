@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from utils import extract_symptoms, predict_disorder
 import os
+import nltk
+nltk.data.path.append('C:\Users\pyank\OneDrive\Desktop\Programing\Data Analysis\Ella\disorder_app\punkt')  # Adjust path as needed
 
 app = Flask(__name__)
 app.secret_key = 'super_secret_key'
